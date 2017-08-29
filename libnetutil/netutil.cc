@@ -679,7 +679,7 @@ static const void *ipv6_get_data_primitive(const struct ip6_hdr *ip6,
   *nxt = ip6->ip6_nxt;
   p += sizeof(*ip6);
   while (p < end && ipv6_is_extension_header(*nxt)) {
-    if (p + 2 > end) // || (p + (*(p + 1) + 1) * 8) >= end)      
+    if (p + 2 > end || (p + (*(p + 1) + 1) * 8) >= end)      
 	return NULL;
     *nxt = *p;
     p += (*(p + 1) + 1) * 8;
